@@ -1,0 +1,37 @@
+<div
+  *ngIf="!dataLoaded"
+  class="d-flex justify-content-center align-items-center"
+  style="height: 100vh"
+>
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<div *ngIf="dataLoaded" class="table-responsive card">
+  <div class="card-header bg-danger text-white">
+    <h5 class="mb-0">Müşteriler</h5>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Ad</th>
+          <th scope="col">Soyad</th>
+          <th scope="col">E-posta</th>
+          <th scope="col">Şirket</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let customerDetail of customerDetails">
+          <td>{{ customerDetail.id }}</td>
+          <td>{{ customerDetail.firstName }}</td>
+          <td>{{ customerDetail.lastName }}</td>
+          <td>{{ customerDetail.email }}</td>
+          <td>{{ customerDetail.companyName }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

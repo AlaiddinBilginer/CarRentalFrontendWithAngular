@@ -1,0 +1,43 @@
+<div
+  *ngIf="!dataLoaded"
+  class="d-flex justify-content-center align-items-center"
+  style="height: 100vh"
+>
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<div *ngIf="dataLoaded" class="table-responsive card">
+  <div class="card-header bg-danger text-white">
+    <h5 class="mb-0">Kiralamalar</h5>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped table-hover">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Id</th>
+          <th scope="col">Marka</th>
+          <th scope="col">Müşteri Adı</th>
+          <th scope="col">Kiralama Tarihi</th>
+          <th scope="col">Teslim Tarihi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rentalDetail of rentalDetails">
+          <td>{{ rentalDetail.id }}</td>
+          <td>{{ rentalDetail.brandName }}</td>
+          <td>{{ rentalDetail.customerFullName }}</td>
+          <td>{{ formatDate(rentalDetail.rentDate) }}</td>
+          <td>
+            {{
+              rentalDetail.returnDate
+                ? formatDate(rentalDetail.returnDate)
+                : "Teslim edilmedi"
+            }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
