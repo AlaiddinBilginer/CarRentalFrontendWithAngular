@@ -11,6 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 export class CarComponent implements OnInit {
   carDetails: CarDetailDto[] = [];
   dataLoaded = false;
+  filterText: string = '';
 
   constructor(
     private carService: CarService,
@@ -33,6 +34,7 @@ export class CarComponent implements OnInit {
     this.carService.getCarDetails().subscribe((response) => {
       this.carDetails = response.data;
       this.dataLoaded = true;
+      console.log(response);
     });
   }
 
