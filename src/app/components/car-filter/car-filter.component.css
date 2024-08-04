@@ -1,0 +1,25 @@
+/* CSS Dosyanıza ekleyin */
+.custom-ng-select {
+  border-radius: 8px;
+  border: 1px solid #ced4da;
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.2s ease;
+}
+
+.custom-ng-select .ng-select-container {
+  padding: 10px;
+}
+
+.custom-ng-select .ng-select-placeholder {
+  color: #6c757d;
+}
+
+.custom-ng-select .ng-select-search {
+  border: none;
+  outline: none;
+}
+
+.custom-ng-select .ng-select-item {
+  font-size: 14px;
+}

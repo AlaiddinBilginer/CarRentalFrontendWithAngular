@@ -23,7 +23,7 @@
             <img
               [src]="getCarImage(carImage.imagePath)"
               class="d-block w-100 img-fluid"
-              style="height: 300px; object-fit: cover"
+              style="height: 325px; object-fit: cover"
               alt="Car Image {{ i }}"
             />
           </div>
@@ -48,7 +48,7 @@
         </button>
       </div>
     </div>
-    <div class="col-lg-6 mb-4 mt-3">
+    <div class="col-lg-6 mb-4">
       <div class="card">
         <div class="card-header">
           <h2 class="text-secondary mb-0 card-title">
@@ -72,6 +72,7 @@
             <strong>Model Yılı: </strong>
             <span class="text-muted">{{ carDetail.modelYear }}</span>
           </h5>
+          <button type="button" class="btn btn-primary mt-3">Kirala</button>
         </div>
       </div>
     </div>

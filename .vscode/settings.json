@@ -1,0 +1,11 @@
+{
+  "prettier.printWidth": 150,
+  "editor.wordWrapColumn": 120,
+  "html.format.wrapLineLength": 120,
+  "diffEditor.wordWrap": "on",
+  "prettier.proseWrap": "preserve",
+  "html.format.wrapAttributes": "auto",
+  "chat.editor.wordWrap": "off",
+  "debug.console.wordWrap": true,
+  "prettier.tabWidth": 2
+}

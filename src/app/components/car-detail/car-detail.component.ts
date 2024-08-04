@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CarDetailDto } from '../../models/carDetailDto';
 import { CarService } from '../../services/car.service';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-car-detail',
@@ -14,7 +15,8 @@ export class CarDetailComponent implements OnInit {
 
   constructor(
     private carService: CarService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private toastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
