@@ -1,11 +1,15 @@
 {
   "prettier.printWidth": 150,
-  "editor.wordWrapColumn": 120,
-  "html.format.wrapLineLength": 120,
-  "diffEditor.wordWrap": "on",
-  "prettier.proseWrap": "preserve",
+  "editor.wordWrapColumn": 160,
+  "html.format.wrapLineLength": 150,
+  "diffEditor.wordWrap": "off",
+  "prettier.proseWrap": "never",
   "html.format.wrapAttributes": "auto",
   "chat.editor.wordWrap": "off",
   "debug.console.wordWrap": true,
-  "prettier.tabWidth": 2
+  "prettier.tabWidth": 2,
+  "editor.wrappingIndent": "same",
+  "editor.wrappingStrategy": "simple",
+  "html.format.wrapAttributesIndentSize": 6,
+  "editor.wordWrap": "on"
 }
