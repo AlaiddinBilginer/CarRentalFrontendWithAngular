@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ColorService } from '../../services/color.service';
 import { Color } from '../../models/color';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-color',
@@ -9,10 +10,13 @@ import { Color } from '../../models/color';
 })
 export class ColorComponent implements OnInit {
   colors: Color[] = [];
-  currentColor: Color | null;
-  dataLoaded = false;
+  filterTextColor: string = '';
+  selectedColorId: number;
 
-  constructor(private colorService: ColorService) {}
+  constructor(
+    private colorService: ColorService,
+    private sharedService: SharedService
+  ) {}
 
   ngOnInit(): void {
     this.getColors();
@@ -21,31 +25,10 @@ export class ColorComponent implements OnInit {
   getColors() {
     this.colorService.getColors().subscribe((response) => {
       this.colors = response.data;
-      this.dataLoaded = true;
     });
   }
 
-  setCurrentColor(color: Color) {
-    this.currentColor = color;
-  }
-
-  getCurrentColorClass(color: Color) {
-    if (color == this.currentColor) {
-      return 'list-group-item active';
-    } else {
-      return 'list-group-item';
-    }
-  }
-
-  getAllColorClass() {
-    if (!this.currentColor) {
-      return 'list-group-item active';
-    } else {
-      return 'list-group-item';
-    }
-  }
-
-  clearCurrentColor() {
-    this.currentColor = null;
+  onColorChange() {
+    this.sharedService.setSelectedColorId(this.selectedColorId);
   }
 }

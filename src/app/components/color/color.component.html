@@ -1,22 +1,23 @@
-<div class="card">
-  <div class="card-header bg-primary text-white">
-    <h5 class="mb-0">Renkler</h5>
-  </div>
-  <ul *ngIf="dataLoaded" class="list-group list-group-flush">
-    <li
-      (click)="clearCurrentColor()"
-      routerLink="/cars"
-      [class]="getAllColorClass()"
-    >
-      Tüm Arabalar
-    </li>
-    <li
-      (click)="setCurrentColor(color)"
-      routerLink="/cars/color/{{ color.id }}"
-      *ngFor="let color of colors"
-      [class]="getCurrentColorClass(color)"
+<div class="d-flex flex-column mb-3">
+  <input
+    type="text"
+    id="color-filter"
+    [(ngModel)]="filterTextColor"
+    placeholder="Renk ara"
+    class="form-control"
+  />
+  <select
+    name="colors"
+    id="color-select"
+    class="form-select"
+    [(ngModel)]="selectedColorId"
+    (ngModelChange)="onColorChange()"
+  >
+    <option
+      [ngValue]="color.id"
+      *ngFor="let color of colors | filterColorPipe : filterTextColor"
     >
       {{ color.name }}
-    </li>
-  </ul>
+    </option>
+  </select>
 </div>

@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { CarService } from '../../services/car.service';
 import { ToastrService } from 'ngx-toastr';
+import { SharedService } from '../../services/shared.service';
 
 @Component({
   selector: 'app-car-add',
@@ -15,22 +16,33 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CarAddComponent implements OnInit {
   carAddForm: FormGroup;
+  selectedColorId: number | null = null;
+  selectedBrandId: number | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
     private carService: CarService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private sharedService: SharedService
   ) {}
 
   ngOnInit(): void {
     this.createCarAddForm();
+    this.sharedService.selectedBrandId$.subscribe((id) => {
+      this.selectedBrandId = id;
+      this.carAddForm.patchValue({ brandId: id });
+    });
+    this.sharedService.selectedColorId$.subscribe((id) => {
+      this.selectedColorId = id;
+      this.carAddForm.patchValue({ colorId: id });
+    });
   }
 
   createCarAddForm() {
     this.carAddForm = this.formBuilder.group({
       name: ['', Validators.required],
-      brandId: ['', Validators.required],
-      colorId: ['', Validators.required],
+      brandId: [this.selectedBrandId, Validators.required],
+      colorId: [this.selectedColorId, Validators.required],
       modelYear: ['', Validators.required],
       dailyPrice: ['', Validators.required],
       description: ['', Validators.required],
