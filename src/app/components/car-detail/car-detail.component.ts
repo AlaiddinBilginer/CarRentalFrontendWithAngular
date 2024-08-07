@@ -8,7 +8,6 @@ import { RentalService } from '../../services/rental.service';
 import { differenceInDays } from 'date-fns';
 import { Rental } from '../../models/rental';
 import { PaymentService } from '../../services/payment.service';
-import { Payment } from '../../models/payment';
 
 @Component({
   selector: 'app-car-detail',
