@@ -1,3 +1,161 @@
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="rentModal"
+  data-bs-backdrop="static"
+  data-bs-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">
+          {{ step === 1 ? "Kiralama Tarihi Seç" : "Ödeme Ekranı" }}
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <!-- Step 1: Tarih Seçimi -->
+        <div *ngIf="step === 1">
+          <form [formGroup]="rentalAddForm">
+            <div class="mb-3">
+              <label for="rentDate" class="form-label">Kiralama Tarihi</label>
+              <input
+                type="date"
+                class="form-control"
+                id="rentDate"
+                formControlName="rentDate"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="returnDate" class="form-label">Teslim Tarihi</label>
+              <input
+                type="date"
+                class="form-control"
+                id="returnDate"
+                formControlName="returnDate"
+              />
+            </div>
+          </form>
+        </div>
+
+        <!-- Step 2: Ödeme -->
+        <div *ngIf="step === 2">
+          <div class="row">
+            <div class="col-md-12">
+              <img src="card.png" alt="Card" class="img-fluid" />
+            </div>
+          </div>
+          <hr />
+          <div class="m-3 text-center">
+            <h4>
+              Toplam Ödenecek Tutar:
+              <span class="badge bg-success">{{
+                amount | currency : "₺"
+              }}</span>
+            </h4>
+          </div>
+          <hr />
+          <form [formGroup]="paymentAddForm">
+            <div class="mb-3">
+              <label for="cardNumber" class="form-label">Kart Numarası</label>
+              <input
+                type="text"
+                class="form-control"
+                id="cardNumber"
+                formControlName="cardNumber"
+              />
+            </div>
+            <div class="mb-3">
+              <label for="cardHolderName" class="form-label"
+                >Kart Üzerindeki İsim</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="cardHolderName"
+                formControlName="cardHolderName"
+              />
+            </div>
+            <div class="row">
+              <div class="col-md-7">
+                <div class="mb-3">
+                  <label for="expiryDate" class="form-label"
+                    >Son Kullanma Tarihi</label
+                  >
+                  <input
+                    type="date"
+                    class="form-control"
+                    id="expiryDate"
+                    formControlName="expiryDate"
+                  />
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="mb-3">
+                  <label for="cvv" class="form-label">CVV</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cvv"
+                    formControlName="cvv"
+                  />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- Ödeme Başarılı -->
+      <div *ngIf="step === 3" class="p-3">
+        <div class="bg-success bg-gradient text-center text-white p-3">
+          <h3 class="mb-2">Ödeme başarılı</h3>
+          <p class="lead">Arabayı belirtilen adresten alabilirsiniz</p>
+        </div>
+      </div>
+      <div
+        [ngClass]="{
+          'd-flex justify-content-between': step === 2,
+          'modal-footer': true
+        }"
+      >
+        <button
+          type="button"
+          class="btn btn-secondary"
+          *ngIf="step === 2"
+          (click)="prevStep()"
+        >
+          Geri
+        </button>
+        <div>
+          <button
+            type="button"
+            class="btn btn-secondary mx-1"
+            data-bs-dismiss="modal"
+          >
+            Kapat
+          </button>
+          <button
+            *ngIf="step === 1 || step === 2"
+            type="button"
+            class="btn btn-primary"
+            (click)="nextStep()"
+          >
+            {{ step === 1 ? "Ödemeye Geç" : "Onayla" }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div *ngIf="carDetail" class="container mt-5 p-4 bg-light rounded shadow-lg">
   <div class="row">
     <div class="col-lg-6">
@@ -72,7 +230,14 @@
             <strong>Model Yılı: </strong>
             <span class="text-muted">{{ carDetail.modelYear }}</span>
           </h5>
-          <button type="button" class="btn btn-primary mt-3">Kirala</button>
+          <button
+            type="button"
+            class="btn btn-primary mt-3"
+            data-bs-toggle="modal"
+            data-bs-target="#rentModal"
+          >
+            Kirala
+          </button>
         </div>
       </div>
     </div>

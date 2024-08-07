@@ -17,10 +17,11 @@ import { CarDetailComponent } from './components/car-detail/car-detail.component
 import { FilterCarPipePipe } from './pipes/filter-car-pipe.pipe';
 import { FilterBrandPipePipe } from './pipes/filter-brand-pipe.pipe';
 import { FilterColorPipePipe } from './pipes/filter-color-pipe.pipe';
+import { ColorAddComponent } from './components/color-add/color-add.component';
+import { BrandAddComponent } from './components/brand-add/brand-add.component';
 
 import { ToastrModule } from 'ngx-toastr';
 import { CarAddComponent } from './components/car-add/car-add.component';
-import { ColorAddComponent } from './components/color-add/color-add.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ColorAddComponent } from './components/color-add/color-add.component';
     FilterColorPipePipe,
     CarAddComponent,
     ColorAddComponent,
+    BrandAddComponent,
   ],
   imports: [
     BrowserModule,
