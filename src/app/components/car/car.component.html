@@ -8,35 +8,40 @@
   </div>
 </div>
 
-<div *ngIf="dataLoaded" class="container">
-  <div class="mb-3">
-    <input
-      type="text"
-      [(ngModel)]="filterText"
-      class="form-control"
-      id="filterText"
-      placeholder="Ara"
-    />
+<div *ngIf="dataLoaded" class="container row">
+  <div class="col-md-3">
+    <app-car-filter></app-car-filter>
   </div>
-  <div class="row">
-    <div
-      *ngFor="let carDetail of carDetails | filterCarPipe : filterText"
-      class="col-md-4 mb-4"
-      routerLink="/cars/detail/{{ carDetail.id }}"
-    >
-      <div class="card h-100">
-        <img
-          [src]="getCarImage(carDetail.images)"
-          class="card-img-top"
-          alt="{{ carDetail.carName }}"
-        />
-        <div class="card-body">
-          <h5 class="card-title">{{ carDetail.carName }}</h5>
-          <p class="card-text">
-            Marka: {{ carDetail.brandName }} <br />
-            Renk: {{ carDetail.colorName }} <br />
-            Model Yılı: {{ carDetail.modelYear }} <br />
-          </p>
+  <div class="col-md-9">
+    <div class="mb-3">
+      <input
+        type="text"
+        [(ngModel)]="filterText"
+        class="form-control"
+        id="filterText"
+        placeholder="Ara"
+      />
+    </div>
+    <div class="row">
+      <div
+        *ngFor="let carDetail of carDetails | filterCarPipe : filterText"
+        class="col-md-4 mb-4"
+        routerLink="/cars/detail/{{ carDetail.id }}"
+      >
+        <div class="card h-100">
+          <img
+            [src]="getCarImage(carDetail.images)"
+            class="card-img-top"
+            alt="{{ carDetail.carName }}"
+          />
+          <div class="card-body">
+            <h5 class="card-title">{{ carDetail.carName }}</h5>
+            <p class="card-text">
+              Marka: {{ carDetail.brandName }} <br />
+              Renk: {{ carDetail.colorName }} <br />
+              Model Yılı: {{ carDetail.modelYear }} <br />
+            </p>
+          </div>
         </div>
       </div>
     </div>

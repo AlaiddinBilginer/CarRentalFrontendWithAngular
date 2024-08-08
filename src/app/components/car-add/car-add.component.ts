@@ -57,7 +57,7 @@ export class CarAddComponent implements OnInit {
           this.toastrService.success(response.message, 'Başarılı');
         },
         error: (responseError) => {
-          if (responseError.error.ValidationErrors.length > 0) {
+          if (responseError.error.ValidationErrors) {
             for (
               let i = 0;
               i < responseError.error.ValidationErrors.length;
@@ -68,6 +68,8 @@ export class CarAddComponent implements OnInit {
                 'Doğrulama hatası'
               );
             }
+          } else {
+            this.toastrService.error('Yetkiniz yok');
           }
         },
       });
