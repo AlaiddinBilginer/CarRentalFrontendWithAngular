@@ -41,12 +41,44 @@
           <a class="nav-link disabled" aria-disabled="true">Yardım</a>
         </li>
       </ul>
-      <button class="btn btn-outline-light" routerLink="/register">
-        Kayıt Ol
-      </button>
-      <button class="btn btn-outline-light" routerLink="/login">
+      <button
+        class="btn btn-light"
+        routerLink="/login"
+        *ngIf="!isAuthenticated()"
+      >
         Giriş Yap
       </button>
+      <button
+        class="btn btn-success ms-2"
+        routerLink="/register"
+        *ngIf="!isAuthenticated()"
+      >
+        Kayıt Ol
+      </button>
+      <ul class="navbar-nav" *ngIf="isAuthenticated()">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle text-white"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img src="" class="rounded-circle" height="22" loading="lazy" />
+            {{ userInfo?.firstName }} {{ userInfo?.lastName }}
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item">Profilim</a>
+            </li>
+            <li>
+              <a class="dropdown-item">Ayarlar</a>
+            </li>
+            <li>
+              <a class="dropdown-item" (click)="logout()">Çıkış Yap</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>

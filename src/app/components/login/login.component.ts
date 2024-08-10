@@ -38,9 +38,13 @@ export class LoginComponent implements OnInit {
 
       this.authService.login(loginModel).subscribe({
         next: (response) => {
-          this.toastrService.info('Giriş İşlemi Başarılı', 'Başarılı Giriş');
-          this.localStorageService.set(response.data.token);
+          this.localStorageService.set('token', response.data.token);
+          this.authService.decodedTokenKey = this.authService.decodedToken(
+            response.data.token
+          );
+          console.log(this.authService.getUserInfo());
           this.router.navigate(['']);
+          this.toastrService.info('Giriş İşlemi Başarılı', 'Başarılı Giriş');
         },
         error: (responseError) => {
           if (responseError.error.ValidationErrors) {
